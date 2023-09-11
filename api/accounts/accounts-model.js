@@ -17,14 +17,24 @@ const getById = (id) => {
 
 const create = (account) => {
   // DO YOUR MAGIC
+  return db("accounts")
+    .insert(account)
+    .then(([id]) => getById(id));
 };
 
 const updateById = (id, account) => {
   // DO YOUR MAGIC
+  const query = db("accounts");
+  return query
+    .where("id", id)
+    .update(account)
+    .then(() => getById(id));
 };
 
 const deleteById = (id) => {
   // DO YOUR MAGIC
+  const query = db("accounts");
+  return query.where("id", id).del();
 };
 
 module.exports = {
